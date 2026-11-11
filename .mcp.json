@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ether": {
+      "type": "http",
+      "url": "https://etherfs.app/mcp"
+    }
+  }
+}

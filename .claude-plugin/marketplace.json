@@ -1,0 +1,16 @@
+{
+  "name": "warptech",
+  "owner": {
+    "name": "WarpTech",
+    "url": "https://etherfs.app"
+  },
+  "description": "Plugins from WarpTech.",
+  "plugins": [
+    {
+      "name": "ether",
+      "source": "./",
+      "description": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write.",
+      "category": "productivity"
+    }
+  ]
+}

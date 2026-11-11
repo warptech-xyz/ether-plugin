@@ -1,0 +1,10 @@
+{
+  "name": "ether",
+  "version": "1.0.0",
+  "description": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write.",
+  "mcpServers": {
+    "ether": {
+      "httpUrl": "https://etherfs.app/mcp"
+    }
+  }
+}

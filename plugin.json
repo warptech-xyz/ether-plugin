@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ether",
+  "version": "1.0.0",
+  "description": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write.",
+  "author": {
+    "name": "WarpTech",
+    "url": "https://etherfs.app"
+  },
+  "homepage": "https://etherfs.app",
+  "repository": "https://github.com/warptech-xyz/ether-plugin",
+  "license": "MIT",
+  "keywords": [
+    "files",
+    "storage",
+    "workspace",
+    "mcp"
+  ]
+}

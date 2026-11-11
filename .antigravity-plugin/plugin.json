@@ -1,0 +1,25 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "ether",
+  "displayName": "Ether",
+  "version": "1.0.0",
+  "description": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "List the files in my Ether workspace",
+    "Save a summary of this conversation to Ether as notes/summary.md"
+  ],
+  "author": {
+    "name": "WarpTech",
+    "url": "https://etherfs.app"
+  },
+  "homepage": "https://etherfs.app",
+  "repository": "https://github.com/warptech-xyz/ether-plugin",
+  "license": "MIT",
+  "keywords": [
+    "files",
+    "storage",
+    "workspace",
+    "mcp"
+  ]
+}
