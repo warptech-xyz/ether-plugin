@@ -24,6 +24,25 @@ codex plugin add ether@warptech
 
 Or open `/plugins` in Codex, or the Plugins tab in the ChatGPT desktop app, and install Ether from the WarpTech marketplace. Sign in when Codex asks.
 
+## GitHub Copilot CLI
+
+```sh
+copilot plugin marketplace add warptech-xyz/ether-plugin
+copilot plugin install ether@warptech
+```
+
+Or, in a session, `/plugin marketplace add warptech-xyz/ether-plugin`, then `/plugin install ether@warptech`. Sign in when Copilot asks, or with `/mcp auth ether`.
+
+## VS Code (GitHub Copilot)
+
+Run **Chat: Install Plugin from Source** and give it `https://github.com/warptech-xyz/ether-plugin`. Or add the marketplace to your settings and install Ether from it:
+
+```json
+"chat.plugins.marketplaces": ["warptech-xyz/ether-plugin"]
+```
+
+Agent plugins need `chat.plugins.enabled`, which your organization may manage. Without them, add just the server: [Install in VS Code](https://vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522ether%2522%252C%2522type%2522%253A%2522http%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fetherfs.app%252Fmcp%2522%257D) or [VS Code Insiders](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522ether%2522%252C%2522type%2522%253A%2522http%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fetherfs.app%252Fmcp%2522%257D). VS Code asks you to review the server, then to sign in when it starts.
+
 ## Cursor
 
 Install Ether from Cursor's marketplace, under **Customize**. Teams can also import this repository in the dashboard, under **Plugins & MCPs**.
@@ -50,6 +69,8 @@ Claude, ChatGPT, Gemini, Grok and Muse connect to Ether as a custom connector ra
 
 > Create a custom connector for Ether. It's a remote MCP server at https://etherfs.app/mcp, over streamable HTTP, and it signs in with OAuth.
 
+Copilot in Visual Studio and JetBrains IDEs has no plugins: add `https://etherfs.app/mcp` in its MCP settings. Copilot's cloud agent can't sign in to Ether, because it doesn't support remote servers that use OAuth.
+
 Any other MCP client can add `https://etherfs.app/mcp` as a remote (streamable HTTP) server with OAuth.
 
 ## What's in this repository
@@ -59,7 +80,7 @@ Each agent reads its own manifest, and every one of them points at the same serv
 | Agent                 | Manifest                                                     | Server config     |
 | --------------------- | ------------------------------------------------------------ | ----------------- |
 | Claude Code           | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | `.mcp.json`       |
-| Codex, ChatGPT, Cursor | `plugin.json` ([Agent Plugins](https://agent-plugins.org)), `.agents/plugins/marketplace.json` | `mcp.json`        |
+| Codex, ChatGPT, Cursor, GitHub Copilot | `plugin.json` ([Agent Plugins](https://agent-plugins.org)), `.agents/plugins/marketplace.json` | `mcp.json`        |
 | Antigravity           | `.antigravity-plugin/plugin.json`                            | `mcp_config.json` |
 | Gemini CLI            | `gemini-extension.json`                                      | (inline)          |
 
