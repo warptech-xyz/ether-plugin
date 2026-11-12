@@ -1,0 +1,17 @@
+{
+  "name": "warptech",
+  "owner": {
+    "name": "WarpTech"
+  },
+  "metadata": {
+    "description": "Plugins from WarpTech."
+  },
+  "plugins": [
+    {
+      "name": "ether",
+      "source": "./",
+      "description": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write.",
+      "logo": "assets/logo.svg"
+    }
+  ]
+}
