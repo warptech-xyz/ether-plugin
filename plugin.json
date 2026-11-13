@@ -15,5 +15,26 @@
     "storage",
     "workspace",
     "mcp"
-  ]
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Ether",
+        "shortDescription": "Files shared with your agents",
+        "longDescription": "Ether is a shared workspace for you and your agents: files that Claude, ChatGPT, Gemini, Grok and your coding agents can all read and write. Read, search, write, edit, move and delete files in your Ether workspace, and copy files between it and your computer.",
+        "developerName": "WarpTech",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://etherfs.app",
+        "privacyPolicyURL": "https://etherfs.app/privacy",
+        "defaultPrompt": [
+          "List the files in my Ether workspace",
+          "Save a summary of this conversation to Ether as notes/summary.md"
+        ],
+        "brandColor": "#B45309",
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
 }

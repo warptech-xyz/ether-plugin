@@ -45,7 +45,7 @@ Agent plugins need `chat.plugins.enabled`, which your organization may manage. W
 
 ## Cursor
 
-Install Ether from Cursor's marketplace, under **Customize**. Teams can also import this repository in the dashboard, under **Plugins & MCPs**.
+[Add Ether to Cursor](https://cursor.com/install-mcp?name=ether&config=eyJ1cmwiOiJodHRwczovL2V0aGVyZnMuYXBwL21jcCJ9), and sign in when Cursor asks. Teams can import this repository as a team marketplace in the dashboard, under **Plugins & MCPs**.
 
 ## Antigravity
 
@@ -56,6 +56,8 @@ agy plugin install https://github.com/warptech-xyz/ether-plugin
 Antigravity asks you to sign in when it first connects to Ether.
 
 ## Gemini CLI
+
+Gemini CLI is for Gemini Code Assist Standard and Enterprise. Free accounts and Google AI Pro and Ultra moved to Antigravity CLI: follow the [Antigravity](#antigravity) steps instead.
 
 ```sh
 gemini extensions install https://github.com/warptech-xyz/ether-plugin
@@ -75,14 +77,18 @@ Any other MCP client can add `https://etherfs.app/mcp` as a remote (streamable H
 
 ## What's in this repository
 
-Each agent reads its own manifest, and every one of them points at the same server:
+Each agent reads its own files, and every one of them points at the same server:
 
-| Agent                 | Manifest                                                     | Server config     |
-| --------------------- | ------------------------------------------------------------ | ----------------- |
-| Claude Code           | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | `.mcp.json`       |
-| Codex, ChatGPT, Cursor, GitHub Copilot | `plugin.json` ([Agent Plugins](https://agent-plugins.org)), `.agents/plugins/marketplace.json` | `mcp.json`        |
-| Antigravity           | `.antigravity-plugin/plugin.json`                            | `mcp_config.json` |
-| Gemini CLI            | `gemini-extension.json`                                      | (inline)          |
+| Agent                       | Manifest                          | Marketplace                        | Server config     |
+| --------------------------- | --------------------------------- | ---------------------------------- | ----------------- |
+| Claude Code                 | `.claude-plugin/plugin.json`      | `.claude-plugin/marketplace.json`  | `.mcp.json`       |
+| Codex, ChatGPT              | `plugin.json`                     | `.agents/plugins/marketplace.json` | `mcp.json`        |
+| GitHub Copilot CLI, VS Code | `plugin.json`                     | `.claude-plugin/marketplace.json`  | `mcp.json`        |
+| Cursor                      | `plugin.json`                     | `.cursor-plugin/marketplace.json`  | `mcp.json`        |
+| Antigravity                 | `.antigravity-plugin/plugin.json` |                                    | `mcp_config.json` |
+| Gemini CLI                  | `gemini-extension.json`           |                                    | (inline)          |
+
+`plugin.json` and `mcp.json` follow [Agent Plugins](https://agent-plugins.org). Copilot and VS Code find the plugin through `.claude-plugin/marketplace.json`, so that file is needed even though it looks Claude-only. CI fails if the name, version, description or server URL differ between files.
 
 ## Privacy
 

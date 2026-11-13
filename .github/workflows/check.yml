@@ -1,0 +1,55 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Every file names the same plugin, version, description and server
+        run: .github/scripts/check-manifests.sh
+
+      - name: Manifests match the Agent Plugins and Antigravity schemas
+        run: |
+          schemas=$RUNNER_TEMP/schemas
+          mkdir -p "$schemas"
+          curl -fsSL -o "$schemas/plugin.json" https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
+          curl -fsSL -o "$schemas/mcp.json" https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
+          curl -fsSL -o "$schemas/antigravity.json" https://antigravity.google/schemas/v1/plugin.json
+          ajv() { npx -y -p ajv-cli@5.0.0 -p ajv-formats@3.0.1 ajv validate --spec=draft2020 -c ajv-formats "$@"; }
+          ajv -s "$schemas/plugin.json" -d plugin.json
+          ajv -s "$schemas/mcp.json" -d mcp.json
+          ajv -s "$schemas/antigravity.json" -d .antigravity-plugin/plugin.json
+
+      - name: Claude Code installs the plugin with its server
+        env:
+          CLAUDE_CONFIG_DIR: ${{ runner.temp }}/claude
+        run: |
+          npm install -g @anthropic-ai/claude-code@2.1.322
+          claude plugin validate .
+          claude plugin marketplace add "$PWD"
+          claude plugin install ether@warptech
+          claude plugin details ether@warptech | tee "$RUNNER_TEMP/claude-details"
+          grep -q 'MCP servers (1)  ether' "$RUNNER_TEMP/claude-details"
+
+      - name: Codex installs the plugin with its server
+        env:
+          CODEX_HOME: ${{ runner.temp }}/codex
+        run: |
+          npm install -g @openai/codex@0.167.2
+          mkdir -p "$CODEX_HOME"
+          codex plugin marketplace add "$PWD"
+          codex plugin add ether@warptech
+          codex mcp list --json | tee "$RUNNER_TEMP/codex-servers"
+          jq -e '.[] | select(.name == "ether" and .transport.url == "https://etherfs.app/mcp")' "$RUNNER_TEMP/codex-servers"
